@@ -19,7 +19,7 @@ def fetch_html_with_playwright(url):
         html = page.content()
         browser.close()
         return html
-# Browser-like headers to reduce chance of being blocked
+
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -118,7 +118,7 @@ def scrape_premier_league():
             team_data["Team"] = team_name
             all_matches.append(team_data)
 
-            time.sleep(1)  # polite delay to avoid hammering FBref servers
+            time.sleep(1)  
 
     if all_matches:
         match_df = pd.concat(all_matches)
