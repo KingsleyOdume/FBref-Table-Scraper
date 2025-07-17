@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scraped Table - {{ table_type }}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.2/dist/bootstrap-table.min.css">
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h2 class="mb-4">✅ {{ table_type }} from: <small class="text-muted">{{ url }}</small></h2>
+
+    <div class="mb-3 d-flex justify-content-between">
+      <a href="{{ url }}" class="btn btn-outline-primary" target="_blank">View Source Page</a>
+      <a href="/static/custom_data.csv" class="btn btn-success" download>⬇️ Download CSV</a>
+      <a href="/submit-source" class="btn btn-secondary">🔁 Scrape Another</a>
+    </div>
+
+    <div class="table-responsive">
+      {{ table_html | safe }}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.2/dist/bootstrap-table.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      const $table = $('table').first();
+      $table.attr({
+        'data-toggle': 'table',
+        'data-search': 'true',
+        'data-pagination': 'true',
+        'data-page-size': '10',
+        'data-show-columns': 'true',
+        'data-show-toggle': 'true',
+        'data-show-fullscreen': 'true',
+        'data-show-refresh': 'false',
+        'data-sortable': 'true'
+      });
+
+      $table.bootstrapTable();
+    });
+  </script>
+</body>
+</html>
